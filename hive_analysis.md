@@ -42,6 +42,7 @@ https://gist.githubusercontent.com/venki09/15e48ae1b96b3e38fc3ea20080aaf9a1/raw/
 hdfs dfs -mkdir /hive_datasets # creating a directory
 hdfs dfs -copyFromLocal weather.json /hive_datasets # copy from local
 ```
+<Screenshot goes here!>
 * To create hive table with json SerDe(Serializer Deserializer), we need to download the hcatalog jar which supports that and then add it to the hive path so that our query can recognize it.
 ```
 wget wget http://central.maven.org/maven2/org/apache/hive/hcatalog/hcatalog-core/0.12.0/hcatalog-core-0.12.0.jar
@@ -53,7 +54,7 @@ hdfs dfs -copyFromLocal hcatalog-core-0.12.0.jar /jars
 $ hive
 hive> ADD JAR hdfs:///jars/hcatalog-core-0.12.0.jar;
 ```
-From here on, I have started using the cloudera provided hive query editor called hue which is easier to vizualize data.
+From here on, I have started using the cloudera provided hive query editor called hue which is easier to visualize data.
 * Create table command
 ```
 CREATE EXTERNAL TABLE IF NOT EXISTS weather(
@@ -101,5 +102,5 @@ hive> desc 'weather';
 ```
 hive> select * from weather;
 ```
-
+<Screenshot goes here>
 ## Analysis
