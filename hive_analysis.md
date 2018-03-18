@@ -31,6 +31,8 @@ hive --service metastore &
    * Job tracker and so on..
 
 ## Load datasets into Hive
+Fo the purpose of this assignment, we will be analysing weather data provided here in https://catalog.data.gov/dataset?res_format=CSV&tags=weather. We will do some simple analysis like days where there were no rain, Coldest and hottest days etc. Following are the steps taken to load the datasets into HDFS and query them using hive.
+
 * Now we need to load data into HDFS so that we can use it to create hive tables
 * Install wget in container so that we can get dataset from https://gist.githubusercontent.com/venki09/15e48ae1b96b3e38fc3ea20080aaf9a1/raw/e55e58a92d03e2b29f25175cd0416a42cbc1ebe2/weather.json which is taken from https://catalog.data.gov/dataset?res_format=CSV&tags=weather. 
 * Download dataset using 
@@ -129,3 +131,8 @@ lateral view explode(weatherdetails) weathertable as weatherdetail
 order by temperaturemax ASC
 limit 5
 ```
+
+## Some problems that I ran into
+There were a few issues that I ran into while performing this assignment. Some of them are listed below
+* The cloudera quickstart edition provides limited support since it is a free version. There were a lot of stability issues which had to be fixed by restarting hadoop services again and again.
+* Since it was a single node hadoop cluster, performance was really bad.
