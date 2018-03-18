@@ -44,7 +44,7 @@ https://gist.githubusercontent.com/venki09/15e48ae1b96b3e38fc3ea20080aaf9a1/raw/
 hdfs dfs -mkdir /hive_datasets # creating a directory
 hdfs dfs -copyFromLocal weather.json /hive_datasets # copy from local
 ```
-<Screenshot goes here!>
+![Dataset loaded to HDFS](data_loaded.png)
 * To create hive table with json SerDe(Serializer Deserializer), we need to download the hcatalog jar which supports that and then add it to the hive path so that our query can recognize it.
 ```
 wget wget http://central.maven.org/maven2/org/apache/hive/hcatalog/hcatalog-core/0.12.0/hcatalog-core-0.12.0.jar
@@ -100,11 +100,12 @@ CREATE EXTERNAL TABLE IF NOT EXISTS weather(
 ```
 hive> desc 'weather';
 ```
+![table description](desc_weather.png)
 * Select some rows from table to make sure we have all the data loaded properly
 ```
 hive> select * from weather;
 ```
-<Screenshot goes here>
+![select query](select_weather.png)
   
 ## Analysis
 ### Days where there was no rain
@@ -112,11 +113,13 @@ hive> select * from weather;
 select weatherdetail.id from weather lateral view explode(weatherdetails) weathertable as weatherdetail
 where weatherdetail.rain=='No';
 ```
+![no rain](no_rain.png)
 ### Days where there was no rain but was foggy
 ```
 select weatherdetail.id from weather lateral view explode(weatherdetails) weathertable as weatherdetail
 where weatherdetail.rain=='No' AND weatherdetail.fog=='Yes';
 ```
+![no rain_but_fog](no_rain_but_fog.png)
 ### Top 5 coldest days in descending order
 ```
 select weatherdetail.id,weatherdetail.temperaturemin from weather 
