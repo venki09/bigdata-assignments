@@ -139,3 +139,10 @@ limit 5
 There were a few issues that I ran into while performing this assignment. Some of them are listed below
 * The cloudera quickstart edition provides limited support since it is a free version. There were a lot of stability issues which had to be fixed by restarting hadoop services again and again.
 * Since it was a single node hadoop cluster, performance was really bad.
+
+## References
+* https://cwiki.apache.org/confluence/display/Hive/Home
+* https://cwiki.apache.org/confluence/display/Hive/AdminManual+MetastoreAdmin
+* https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Types
+* https://hub.docker.com/r/cloudera/quickstart/
+* https://catalog.data.gov/dataset?res_format=CSV&tags=weather
