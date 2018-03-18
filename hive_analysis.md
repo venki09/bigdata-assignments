@@ -117,10 +117,15 @@ where weatherdetail.rain=='No' AND weatherdetail.fog=='Yes';
 ```
 ### Top 5 coldest days in descending order
 ```
-select weatherdetail.id,weatherdetail.temperaturemin from weather lateral view explode(weatherdetails) weathertable as weatherdetail order by temperaturemin ASC
-
+select weatherdetail.id,weatherdetail.temperaturemin from weather 
+lateral view explode(weatherdetails) weathertable as weatherdetail 
+order by temperaturemin ASC
+limit 5
 ```
 ### Top 5 hottest days in descending order
 ```
-select weatherdetail.id,weatherdetail.temperaturemin from weather lateral view explode(weatherdetails) weathertable as weatherdetail order by temperaturemax DESC
+select weatherdetail.id,weatherdetail.temperaturemax from weather 
+lateral view explode(weatherdetails) weathertable as weatherdetail 
+order by temperaturemax ASC
+limit 5
 ```
