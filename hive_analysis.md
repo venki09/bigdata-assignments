@@ -103,7 +103,8 @@ hive> desc 'weather';
 hive> select * from weather;
 ```
 <Screenshot goes here>
-##Analysis
+  
+## Analysis
 ### Days where there was no rain
 ```
 select weatherdetail.id from weather lateral view explode(weatherdetails) weathertable as weatherdetail
