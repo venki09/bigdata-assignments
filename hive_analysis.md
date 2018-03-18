@@ -103,4 +103,23 @@ hive> desc 'weather';
 hive> select * from weather;
 ```
 <Screenshot goes here>
-## Analysis
+##Analysis
+### Days where there was no rain
+```
+select weatherdetail.id from weather lateral view explode(weatherdetails) weathertable as weatherdetail
+where weatherdetail.rain=='No';
+```
+### Days where there was no rain but was foggy
+```
+select weatherdetail.id from weather lateral view explode(weatherdetails) weathertable as weatherdetail
+where weatherdetail.rain=='No' AND weatherdetail.fog=='Yes';
+```
+### Top 5 coldest days in descending order
+```
+select weatherdetail.id,weatherdetail.temperaturemin from weather lateral view explode(weatherdetails) weathertable as weatherdetail order by temperaturemin ASC
+
+```
+### Top 5 hottest days in descending order
+```
+select weatherdetail.id,weatherdetail.temperaturemin from weather lateral view explode(weatherdetails) weathertable as weatherdetail order by temperaturemax DESC
+```
