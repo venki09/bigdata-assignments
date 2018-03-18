@@ -1,16 +1,36 @@
 
-Assignment-3 - Hive 
+## Hive Analysis
+The purpose of this document is to list out all the steps done as part of hive analysis
+
+## Hive setup
+For the purpose of this assignment, I used the cloudera quickstart docker image. Using a docker image has the following advantages
+* Not dependent on the host platform. It can run anywhere
+* The user doesn't have to worry about any additional setup to configure nodes and things like that.
+* Setup and teardown is very easy and can be done with one command
+
+## Setup steps
 * Install cloudera docker image which has all the cloudera hadoop distribution for us to work with.
-    * docker pull cloudera/quickstart:latest
-
+```
+docker pull cloudera/quickstart:latest
+```
+* Run the docker container which will bring up the cluster and start all the hadoop services.
+```
 docker run --hostname=quickstart.cloudera --privileged=true -t -i -p 8888 -p 7180 4239cd2958c6 /usr/bin/docker-quickstart
+```
+* As soon as the docker container starts, it will open up the terminal which we can use to access the filesystem in that container.
 
-* Start hive metastore server - https://cwiki.apache.org/confluence/display/Hive/AdminManual+MetastoreAdmin
-* Run it as background process
+* Start hive metastore server. This needs to be done so that hive can contact the metastore to perform all the operations.
+
+* Run it as background process so that we can do other tasks with the hive metastore thrift server started.
 ```
 hive --service metastore &
 ```
-* Now we can start hive console using hive command
+* Now we can start hive console using hive command `hive` on the terminal. Another way to access hive is to use a cloudera provided service called hue which is a UI component which exposes the following hadoop services for us
+   * Hive editor
+   * HDFS file browser
+   * Job tracker and so on..
+
+## Load datasets into Hive
 * Now we need to load data into HDFS so that we can use it to create hive tables
 * Install wget in container so that we can get dataset from https://gist.githubusercontent.com/venki09/15e48ae1b96b3e38fc3ea20080aaf9a1/raw/e55e58a92d03e2b29f25175cd0416a42cbc1ebe2/weather.json which is taken from https://catalog.data.gov/dataset?res_format=CSV&tags=weather. 
 * Download dataset using 
